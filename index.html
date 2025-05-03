@@ -8,7 +8,7 @@
   <style>
     body {
       background-image: url("https://jijojose.w3spaces.com/12png_cicada-3301-organization-game-secret-society-cicadoidea-arthropod.png");
-      background-color: rgb(16, 49, 61);
+      background-color: rgb(16, 17, 109);
       background-repeat: no-repeat;
       background-position: top;
       font-family: 'Tangerine', serif;
@@ -63,6 +63,17 @@
       color: #ffcccb;
       text-decoration: underline;
     }
+
+    /* Adding styles for new columns */
+    .photo-column, .resume-column {
+      margin: 20px;
+      padding: 15px;
+      border: 2px solid white;
+      border-radius: 12px;
+      display: inline-block;
+      width: 200px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -82,11 +93,38 @@
   <!-- 👤 Your Name as Play Button -->
   <div class="name-play" onclick="playMusic()"> <b>Jijo C Jose</b> </div>
 
-  <!-- 📄 Resume Link -->
-  <a class="link-button" href="https://example.com/your-resume.pdf" target="_blank">My Resume</a>
+  <!-- 🔒 Password Protection -->
+  <script>
+    const correctPassword = "1979j20"; // Password is your nickname
 
-  <!-- 🎵 Music Archive Link -->
-  <a class="link-button" href="https://archive.org/details/NostalgiaOldMalayalamFilmSongs-1?webamp=default" target="_blank">My Music</a>
+    function checkPassword(section) {
+      const userPassword = prompt("Enter the password (Hint: 1******20)");
+      
+      if (userPassword === correctPassword) {
+        alert("Access granted!"); 
+        // Show the protected content based on the section clicked
+        document.getElementById(section).style.display = "block";
+      } else {
+        alert("Incorrect password! Access denied.");
+      }
+    }
+  </script>
+
+  <!-- 📄 Resume Link -->
+  <div class="resume-column" id="resume-column" style="display: none;">
+    <a class="link-button" href="https://drive.google.com/file/d/1kcnmNv9r5zrKBSNb3iXNR506yOO30RYU/view?usp=sharing" target="_blank">My Resume</a>
+  </div>
+
+  <!-- 📸 My Photos Column -->
+  <div class="photo-column" id="photo-column" style="display: none;">
+    <a class="link-button" href="https://your-photo-gallery-link.com" target="_blank">My Photos</a>
+  </div>
+
+  <!-- Links to Trigger Password Protection -->
+  <div>
+    <button class="link-button" onclick="checkPassword('resume-column')">My Resume</button>
+    <button class="link-button" onclick="checkPassword('photo-column')">My Photos</button>
+  </div>
 
   <!-- 🎛 JS to Play Music -->
   <script>
