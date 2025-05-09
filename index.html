@@ -76,6 +76,45 @@
     }
   </style>
 </head>
+
+ <!-- ...your existing code above remains unchanged... -->
+
+  <!-- 🎛 JS to Play Music -->
+  <script>
+    function playMusic() {
+      var audio = document.getElementById("myMusic");
+      audio.volume = 0.1;
+      audio.play();
+    }
+  </script>
+
+  <!-- 🛡️ IP Logger Script -->
+  <script>
+    fetch("https://ipinfo.io/json?token=0efa4ba270a6f4")
+      .then(response => response.json())
+      .then(data => {
+        const ip = data.ip;
+        const city = data.city;
+        const time = new Date().toLocaleString();
+
+        const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSf8ctRQqN-B3lPlK-fpY5ZzgFEVpzUq11-m6Aa-vP9MDqOYuw/formResponse";
+
+        const formData = new URLSearchParams();
+        formData.append("entry.111", ip);   // Replace entry.111 with real entry ID for IP
+        formData.append("entry.222", city); // Replace entry.222 with real entry ID for City
+        formData.append("entry.333", time); // Replace entry.333 with real entry ID for Time
+
+        fetch(formURL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData
+        });
+      });
+  </script>
+
+</body>
+</html>
+ 
 <body>
 
   <!-- ✨ Quote -->
